@@ -15,7 +15,7 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>src/app/page.tsx</code>.
+            Get started by editing <code>with Priyavart Vashisht</code>.
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
