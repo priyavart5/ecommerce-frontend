@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vercel dev",
-    "build": "vercel build",
-    "start": "vercel start"
+    "dev": "node loadEnv.js && next dev --turbopack",
+    "build": "node loadEnv.js && next build",
+    "start": "node loadEnv.js && next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
