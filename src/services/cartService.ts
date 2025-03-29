@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const addToCart = async (productId: string, quantity: number, token: string) => {
     try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cart/add`,{ productId, quantity },
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/cart/add`,{ productId, quantity },
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ export const removeFromCart = async (productId: string, token: string) => {
 
 export const getCartItem = async (id : string, token: string) => {
     try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cart/${id}`,
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/cart/${id}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

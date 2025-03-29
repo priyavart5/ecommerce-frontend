@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAllProduct = async ({ search = "", category = "", minPrice = "", maxPrice = "", page = 1 }) => {
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/products`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/products`, {
         params: { search, category, minPrice, maxPrice, page }
       });
   
@@ -14,7 +14,7 @@ const getAllProduct = async ({ search = "", category = "", minPrice = "", maxPri
 
 const getProduct = async (id: string) => {
     try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/${id}`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/${id}`);
         return response.data;
     } catch (error: any) {
         throw error.response || "Failed to fetch data.";

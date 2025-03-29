@@ -11,7 +11,7 @@ interface DecodedToken {
 const registerUser = async (name: string, email: string, password: string) => {
     
     try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/register`, { name, email, password });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/register`, { name, email, password });
         return response.data;
     } catch (error: any) {
         throw error.response || "Registration failed";
@@ -22,7 +22,7 @@ const registerUser = async (name: string, email: string, password: string) => {
 const loginUser = async (email: string, password: string) => {
     
     try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/login`, { email, password });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`, { email, password });
         return response.data;
     } catch (error: any) {
         throw error.response || "Login failed";
