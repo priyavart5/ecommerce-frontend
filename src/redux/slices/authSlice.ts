@@ -7,7 +7,6 @@ interface AuthState {
     name: string | null; 
     email: string | null;
   };
-  token: string | null;
 }
 
 const initialState: AuthState = {
@@ -16,25 +15,21 @@ const initialState: AuthState = {
     name: null,
     email: null,
   },
-  token: Cookies.get("token") || null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    userDetails: (state, action: PayloadAction<{ user: any; token: string }>) => {
-      state.user.id = action.payload.user.userId;
-      state.user.name = action.payload.user.userName;
-      state.user.email = action.payload.user.userEmail;
-      state.token = action.payload.token;
-      Cookies.set("token", action.payload.token, { expires: 7 });
+    userDetails: (state, action: PayloadAction<{ userId: string; userEmail: string; userName: string }>) => {
+      state.user.id = action.payload.userId;
+      state.user.name = action.payload.userName;
+      state.user.email = action.payload.userEmail;
     },
     logout: (state) => {
       state.user.id = null;
       state.user.name = null;
       state.user.email = null;
-      state.token = null;
       Cookies.remove("token");
     },
   },

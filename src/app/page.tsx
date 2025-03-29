@@ -1,11 +1,14 @@
+"use client"
 import styles from "@/styles/page.module.css";
-import Navbar from "@/components/Navbar";
+import Products from "@/components/Products";
 
-export default function Home() {
-
+const Home = () => {
+  
   return (
     <div className={styles.page}>
-      <Navbar />
+      <Products />
     </div>
   );
-}
+};
+
+export default Home;

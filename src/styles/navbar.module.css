@@ -1,0 +1,60 @@
+.navbar{
+    width: 100%;
+    height: auto;
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #e4e4e4;
+    background-color: #fff;
+}
+
+.rest_navbar{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart_navbar{
+    padding: 10px 22px;
+
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    cursor: pointer;
+}
+
+.user_navabar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font: 500 14px 'Arial';
+    color: #fff;
+    background-color: #edf5ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.userImage_navabar{
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+}
+
+.userName_navbar{
+    color: #026fff;
+}
+
+
+.loginlogout{
+    padding: 10px 22px;
+    background-color: #026fff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+}

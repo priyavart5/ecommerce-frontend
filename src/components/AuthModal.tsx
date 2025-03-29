@@ -1,11 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
+import style from "@/styles/authModal.module.css";
 import { useDispatch } from "react-redux";
 import { userDetails } from "@/redux/slices/authSlice";
 import { loginUser, registerUser } from "@/services/authService";
+import Cookies from "js-cookie";
+import { X } from 'lucide-react';
 
-const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+interface authDetails{
+    isOpen: boolean;
+    onClose: ()=> void;
+}
+
+const AuthModal: React.FC<authDetails> = ({ isOpen, onClose }) => {
 
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
@@ -17,6 +25,7 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -25,15 +34,16 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     try {
       if (isLogin) {
         const data = await loginUser(formData.email, formData.password);
-        // console.log(data)
+        Cookies.set("token", data.token, { expires: 7 });
         dispatch(userDetails(data));
       } else {
         const data = await registerUser(formData.name, formData.email, formData.password);
+        Cookies.set("token", data.token, { expires: 7 });
         dispatch(userDetails(data));
       }
       onClose();
-    } catch (err) {
-      setError(err as string);
+    } catch (err: any) {
+      setError(err.data.message as string);
     } finally {
       setLoading(false);
     }
@@ -41,13 +51,17 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 
   return (
     isOpen && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-          <h2 className="text-xl font-semibold mb-4">{isLogin ? "Login" : "Register"}</h2>
+      <div className={style.authModal}>
+        <div className={style.authModal_container}>
 
-          {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          <div className={style.top_authModal}>
+            <h2>{isLogin ? "Login" : "Register"}</h2>
+            <X onClick={onClose} style={{ "cursor":"pointer" }} color="#000" size={18} strokeWidth={2} />
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
+          {error && <p className="">{error}</p>}
+
+          <form onSubmit={handleSubmit} className={style.form_authModal}>
             {!isLogin && (
               <input
                 type="text"
@@ -55,7 +69,7 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full p-2 border rounded"
+                className={style.input_authModal}
                 required
               />
             )}
@@ -65,7 +79,7 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className={style.input_authModal}
               required
             />
             <input
@@ -74,13 +88,13 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className={style.input_authModal}
               required
             />
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+              className={style.submit_authModal}
               disabled={loading}
             >
               {loading ? "Processing..." : isLogin ? "Login" : "Register"}
@@ -88,15 +102,11 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
           </form>
 
           <p
-            className="text-sm text-center mt-3 cursor-pointer text-blue-500"
+            className={style.alternate_authModal}
             onClick={() => setIsLogin(!isLogin)}
           >
             {isLogin ? "Don't have an account? Register" : "Already have an account? Login"}
           </p>
-
-          <button onClick={onClose} className="absolute top-2 right-2 text-gray-500">
-            ✖
-          </button>
         </div>
       </div>
     )

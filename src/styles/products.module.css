@@ -1,0 +1,132 @@
+.productsComponent{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+}
+
+.topBar_products{
+    width: fit-content;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding: 12px 20px;
+    background-color: #f8f8f8;
+    border-radius: 100px;
+    align-self: center;
+    gap: 20px;
+}
+
+.search_products{
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid #e6e6e6;
+}
+
+.category_products{
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 100px;
+    border: 1px solid #e6e6e6;
+}
+
+.minMaxPrice_products{
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid #e6e6e6;
+}
+
+.allproducts{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.oneProduct_con{
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.innerOneProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.addtocar_productspage{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background-color: #026fff;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.productPagination{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.paginationButtons{
+    height: auto;
+    padding: 10px;
+    background-color: #026fff;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media screen and (width < 800px) and (width > 490px) {
+
+    .allproducts{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+    
+
+}
+
+@media screen and (width < 490px) and (width > 200px) {
+
+    .topBar_products{
+        padding: 12px;
+        border-radius: 12px;
+        gap: 10px;
+    }
+
+    .minMaxPrice_products{
+        width: 100%;
+    }
+
+    .allproducts{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 12px;
+    }
+    
+
+}
